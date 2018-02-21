@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Navbar} from 'react-bootstrap';
+import {Navbar , Col} from 'react-bootstrap';
 
 const Header = () => {
   return(
@@ -18,7 +18,12 @@ const Layout = ({children}) => {
   return(
     <div>
       <Header />
-      {children}
+      <div className="container-fluid">
+        <Col xsOffset={1} xs={10} xsOffset={1}>
+	    <h1 className="page-header">Sample React Program</h1>
+	    {children}
+        </Col>
+      </div>
     </div>
   );
 }
