@@ -85,74 +85,28 @@ function __checkValidationCommentStatus(val){
   else return 'success';
 }
 
-export default class InputForm extends React.Component{
-  constructor(){
-    super();
-    this.state={
-      data: {
-        name: '',
-        comment: ''
-      },
-      message: {
-        name: '',
-        comment: ''
-      },
-      status:{
-        name: false,
-        comment: false 
-      }
-    };
-    this.handleCheckValue = this.handleCheckValue.bind(this);
+const InputForm = (props) => {
+  let name = {
+    name: this.state.data.name,
+    message: this.state.message.name,
+    onChange: this.handleCheckValue
+  };
+  let comment = {
+    comment: this.state.data.comment,
+    message: this.state.message.comment,
+    onChange: this.handleCheckValue
+  };
+  let button = {
+    name: this.state.status.name,
+    comment: this.state.status.comment,
   }
-
-  handleCheckValue(e){
-    const type = e.target.name;
-    const val = e.target.value; 
-    const result = __checkValue(type,val.length);
-    let data = Object.assign({},this.state.data);
-    let message = Object.assign({},this.state.message);
-    let status = Object.assign({},this.state.status);
-
-    switch(type){
-      case 'name':
-        data.name = val;
-        message.name = result.message;
-        status.name = result.status;
-        break;
-      case 'comment':
-        data.comment= val;
-        message.comment= result.message;
-        status.comment= result.status;
-        break;
-    } 
-    this.setState({
-      data: data,
-      message: message,
-      status: status
-    });
-  }
-
-  render(){
-    let name = {
-      name: this.state.data.name,
-      message: this.state.message.name,
-      onChange: this.handleCheckValue
-    };
-    let comment = {
-      comment: this.state.data.comment,
-      message: this.state.message.comment,
-      onChange: this.handleCheckValue
-    };
-    let button = {
-      name: this.state.status.name,
-      comment: this.state.status.comment,
-    }
-    return(
-      <form>
-        <NameForm {...name} />
-        <CommentForm {...comment} />
-        <ButtonForm {...button}/>
-      </form> 
-    ) 
-  } 
+  return(
+    <form>
+      <NameForm {...name} />
+      <CommentForm {...comment} />
+      <ButtonForm {...button}/>
+    </form> 
+  ) 
 }
+
+export default InputField;

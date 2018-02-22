@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Grid,Col,Row} from 'react-bootstrap';
 import Layout from './component/layout.js';
-import InputForm from './component/inputForm';
+import WholeCommentField from './component/wholeCommentField';
 
 const App = () => {
   return(
     <Layout>
-      <InputForm />
+      <WholeCommentField />
     </Layout>
   );
 };
