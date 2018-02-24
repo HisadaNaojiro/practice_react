@@ -4,7 +4,7 @@ import {FormGroup,FormControl,ControlLabel,HelpBlock,Button} from 'react-bootstr
 const NameForm = (props) => {
   return(
     <FormGroup validationState={(() => {return __checkValidationNameStatus(props.name)})()}>
-      <ControlLabel>Name</ControlLabel> 
+      <ControlLabel>Name</ControlLabel>
       <FormControl
 	type="text"
         name="name"
@@ -15,14 +15,14 @@ const NameForm = (props) => {
       <HelpBlock>{props.message}</HelpBlock>
       <HelpBlock>{(props.name.length > 0)? props.name.length: ''}</HelpBlock>
       <FormControl.Feedback />
-    </FormGroup> 
+    </FormGroup>
   )
 };
 
 const CommentForm = (props)=>{
   return(
     <FormGroup validationState={(() => {return __checkValidationCommentStatus(props.comment)})()}>
-      <ControlLabel>Comment</ControlLabel> 
+      <ControlLabel>Comment</ControlLabel>
       <FormControl
         componentClass="textarea"
         placeholder="please Enter Comment"
@@ -33,43 +33,15 @@ const CommentForm = (props)=>{
       <HelpBlock>{props.message}</HelpBlock>
       <HelpBlock>{(props.comment.length > 0)? props.comment.length: ''}</HelpBlock>
       <FormControl.Feedback />
-    </FormGroup> 
+    </FormGroup>
   )
 };
 
 const ButtonForm = (props) => {
   return(
-    <Button bsStyle="primary" block disabled={(!props.name || !props.comment)? true : false}>Submit</Button>
+    <Button bsStyle="primary" block disabled={(!props.name || !props.comment)? true : false} onClick={props.onClick} >Submit</Button>
   )
 };
-
-function __checkValue(type,length){
-  let status = false;
-  let message = '';
-  switch(type){
-    case 'name':
-      if(length == 0 ){ break;}
-
-      if(length < 5 || length > 20){
-	message =  'Please enter at least 5 characters and 20 characters or less';
-      }else if (length >= 5 && length <= 20){
-        message = 'OK!';
-        status = true;
-      }
-      break;
-    case 'comment':
-      if(length == 0 ){ break;}
-
-      if(length < 10 || length > 30){
-	message =  'Please enter at least 10 characters and 30 characters or less';
-      }else if (length >= 10 && length <= 30){
-        message = 'OK!';
-        status = true;
-      }
-      break;
-  }
-  return {status : status , message: message}
-}
 
 function __checkValidationNameStatus(val){
   const length = val.length;
@@ -85,28 +57,29 @@ function __checkValidationCommentStatus(val){
   else return 'success';
 }
 
-const InputForm = (props) => {
+const CommentFormTable = (props) => {
   let name = {
-    name: this.state.data.name,
-    message: this.state.message.name,
-    onChange: this.handleCheckValue
+    name: props.data.name,
+    message: props.message.name,
+    onChange: props.onChange
   };
   let comment = {
-    comment: this.state.data.comment,
-    message: this.state.message.comment,
-    onChange: this.handleCheckValue
+    comment: props.data.comment,
+    message: props.message.comment,
+    onChange: props.onChange
   };
   let button = {
-    name: this.state.status.name,
-    comment: this.state.status.comment,
+    name: props.status.name,
+    comment: props.status.comment,
+    onClick: props.onClick
   }
   return(
     <form>
       <NameForm {...name} />
       <CommentForm {...comment} />
       <ButtonForm {...button}/>
-    </form> 
-  ) 
+    </form>
+  )
 }
 
-export default InputField;
+export default CommentFormTable;

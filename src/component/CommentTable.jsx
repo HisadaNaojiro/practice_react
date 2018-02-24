@@ -1,7 +1,7 @@
 import React from 'react';
 import {Panel} from 'react-bootstrap';
 
-const CommentField = (props) => {
+const CommentRow = (props) => {
   return(
     <Panel>
       <Panel.Heading>{props.name}</Panel.Heading>
@@ -10,15 +10,15 @@ const CommentField = (props) => {
   );
 }
 
-const Comment =(proos) =>{ 
+const CommentTable =(props) =>{
   return(
     <div>
       <h2 className="page-header">Show Commtens</h2>
-      {this.state.items.map((data,number) => {
-        return <CommentField key={number} {...data} />
+      {props.items.map((data,number) => {
+        return <CommentRow key={number} {...data} />
       })}
     </div>
   );
 }
 
-export default Comment;
+export default CommentTable;
