@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from './component/layout.js';
-import InputForm from './component/inputForm';
+import Layout from './component/Layout';
+import WholeCommentTable from './component/WholeCommentTable';
 
 const App = () => {
   return(
     <Layout>
-      <InputForm />
+	   <WholeCommentTable />
     </Layout>
   );
 };
